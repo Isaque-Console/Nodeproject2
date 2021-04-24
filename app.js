@@ -36,7 +36,7 @@ app.get('/', async (req, res) => {
  });
 
  app.put('/:id', (req,res) => {
-    const putMessage = "Put successfull";
+    const putMessage = "Successfully put";
     const id = req.params.id;
     const {nome, marca,cor,fabricacao} = req.body;
     client.query(`UPDATE carro SET nome=${nome},marca=${marca},cor${cor},fabricacao${fabricacao} WHERE id = ${id}`);
@@ -44,7 +44,10 @@ app.get('/', async (req, res) => {
  })
 
 app.delete('/:id', (req,res) => {
-    
+    const deleteMessage = "Successfully delete";
+    const id = req.params.id;
+    client.query(`DELETE FROM carro WHERE id = ${id}`);
+    res.send(deleteMessage);
 });
 
 const port = 3002;
