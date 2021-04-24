@@ -27,7 +27,7 @@ app.get('/', async (req, res) => {
      console.log(idCar);
      const result = await client.query(`SELECT id,nome,marca,cor,fabricacao FROM carro WHERE id = ${idCar};`);
      res.send(result);
- });
+ });bbb
 
  app.post ('/', (req,res) => {
     const { nome, marca, cor,fabricacao} = req.body;
