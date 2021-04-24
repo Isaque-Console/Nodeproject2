@@ -43,6 +43,10 @@ app.get('/', async (req, res) => {
     res.send(putMessage);
  })
 
+app.delete('/:id', (req,res) => {
+    
+});
+
 const port = 3002;
 
 app.listen(port, () => { // indicar a porta que será usada do pc
