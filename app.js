@@ -35,6 +35,13 @@ app.get('/', async (req, res) => {
     res.send({ nome, marca, cor,fabricacao});
  });
 
+ app.put('/:id', (req,res) => {
+    const putMessage = "Put successfull";
+    const id = req.params.id;
+    const {nome, marca,cor,fabricacao} = req.body;
+    client.query(`UPDATE carro SET nome=${nome},marca=${marca},cor${cor},fabricacao${fabricacao} WHERE id = ${id}`);
+    res.send(putMessage);
+ })
 
 const port = 3002;
 
