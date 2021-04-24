@@ -31,7 +31,6 @@ app.get('/', async (req, res) => {
  app.post ('/', (req,res) => {
     const { nome, marca, cor,fabricacao} = req.body;
     client.query(`INSERT INTO carro (nome,marca,cor,fabricacao) VALUES ($1,$2,$3,$4);`, [nome,marca,cor,fabricacao]);
-    res.send({ nome, marca, cor,fabricacao});
  });
 
  app.put('/:id', (req,res) => {
