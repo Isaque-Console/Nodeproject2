@@ -24,14 +24,13 @@ app.get('/', async (req, res) => {
 
  app.get('/:id', async (req, res) => {
      const idCar = req.params.id;
-     console.log(idCar);
-     const result = await client.query(`SELECT id,nome,marca,cor,fabricacao FROM carro WHERE id = ${idCar};`);
+     const result = await client.query(`SELECT id,nome,marca,cor,fabricacao FROM carro WHERE id = $1;`, [idCar]);
      res.send(result);
- });aaa
+ });
 
  app.post ('/', (req,res) => {
     const { nome, marca, cor,fabricacao} = req.body;
-    client.query(`INSERT INTO carro VALUES(NULL,${nome},${marca},${cor},${fabricacao})`);
+    client.query(`INSERT INTO carro (nome,marca,cor,fabricacao) VALUES ($1,$2,$3,$4);`, [nome,marca,cor,fabricacao]);
     res.send({ nome, marca, cor,fabricacao});
  });
 
@@ -39,14 +38,14 @@ app.get('/', async (req, res) => {
     const putMessage = "Successfully put";
     const id = req.params.id;
     const {nome, marca,cor,fabricacao} = req.body;
-    client.query(`UPDATE carro SET nome=${nome},marca=${marca},cor${cor},fabricacao${fabricacao} WHERE id = ${id}`);
+    client.query(`UPDATE carro SET nome=$1,marca=$2,cor=$3,fabricacao=$4 WHERE id = $5`, [nome,marca,cor,fabricacao,id]);
     res.send(putMessage);
- })
+ });
 
 app.delete('/:id', (req,res) => {
     const deleteMessage = "Successfully delete";
     const id = req.params.id;
-    client.query(`DELETE FROM carro WHERE id = ${id}`);
+    client.query(`DELETE FROM carro WHERE id = $1`, [id]);
     res.send(deleteMessage);
 });
 
