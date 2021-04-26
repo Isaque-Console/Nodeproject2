@@ -29,8 +29,10 @@ app.get('/', async (req, res) => {
  });
 
  app.post ('/', (req,res) => {
+     const postMessage = "Succesfully post";
     const { nome, marca, cor,fabricacao} = req.body;
     client.query(`INSERT INTO carro (nome,marca,cor,fabricacao) VALUES ($1,$2,$3,$4);`, [nome,marca,cor,fabricacao]);
+    res.send(postMessage);
  });
 
  app.put('/:id', (req,res) => {
